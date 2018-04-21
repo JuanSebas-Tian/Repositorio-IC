@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<name>Example Project</name>
+	<groupId>dev.example.com</groupId>
+	<artifactId>version1</artifactId>
+	<version>2.1</version>
+	<packaging>pom</packaging>
+	
+    <build>
+        <directory>build</directory>
+        <sourceDirectory>application</sourceDirectory>
+        <testSourceDirectory>tests</testSourceDirectory>
+    </build>
+
+    <properties>
+		<Repositorio-IC.login>admin</Repositorio-IC.login>
+		<Repositorio-IC.password>admin</Repositorio-IC.password>
+		
+		<!--<Repositorio-IC.host.url>http://localhost/</Repositorio-IC.host.url>-->
+		<!--<Repositorio-IC.jdbc.url>jdbc:mysql://localhost:3306/Repositorio-IC?useUnicode=true&amp;characterEncoding=utf8</Repositorio-IC.jdbc.url>-->
+		<Repositorio-IC.jdbc.driver>com.mysql.jdbc.Driver</Repositorio-IC.jdbc.driver>
+		<Repositorio-IC.jdbc.username>Repositorio-IC</Repositorio-IC.jdbc.username>
+		<Repositorio-IC.jdbc.password>Repositorio-IC</Repositorio-IC.jdbc.password>
+		
+		<Repositorio-IC.language>php</Repositorio-IC.language>
+		<Repositorio-IC.dynamicAnalysis>false</Repositorio-IC.dynamicAnalysis>
+		<Repositorio-IC.skipPackageDesign>true</Repositorio-IC.skipPackageDesign>
+		<Repositorio-IC.skipDesign>true</Repositorio-IC.skipDesign>
+    </properties>
+
+</project>
