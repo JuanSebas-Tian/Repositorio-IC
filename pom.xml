@@ -1,32 +1,68 @@
-<?xml version="1.0"?>
-<project>
-	<modelVersion>4.0.0</modelVersion>
-	<name>Example Project</name>
-	<groupId>dev.example.com</groupId>
-	<artifactId>version1</artifactId>
-	<version>2.1</version>
-	<packaging>pom</packaging>
-	
-    <build>
-        <directory>build</directory>
-        <sourceDirectory>application</sourceDirectory>
-        <testSourceDirectory>tests</testSourceDirectory>
-    </build>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.myorganization.app</groupId>
+    <name>My App</name>
+    <version>1.0</version>
+    <url>http://maven.apache.org</url>
+    <packaging>jar</packaging>
 
     <properties>
-		<Repositorio-IC.login>admin</Repositorio-IC.login>
-		<Repositorio-IC.password>admin</Repositorio-IC.password>
-		
-		<!--<Repositorio-IC.host.url>http://localhost/</Repositorio-IC.host.url>-->
-		<!--<Repositorio-IC.jdbc.url>jdbc:mysql://localhost:3306/Repositorio-IC?useUnicode=true&amp;characterEncoding=utf8</Repositorio-IC.jdbc.url>-->
-		<Repositorio-IC.jdbc.driver>com.mysql.jdbc.Driver</Repositorio-IC.jdbc.driver>
-		<Repositorio-IC.jdbc.username>Repositorio-IC</Repositorio-IC.jdbc.username>
-		<Repositorio-IC.jdbc.password>Repositorio-IC</Repositorio-IC.jdbc.password>
-		
-		<Repositorio-IC.language>php</Repositorio-IC.language>
-		<Repositorio-IC.dynamicAnalysis>false</Repositorio-IC.dynamicAnalysis>
-		<Repositorio-IC.skipPackageDesign>true</Repositorio-IC.skipPackageDesign>
-		<Repositorio-IC.skipDesign>true</Repositorio-IC.skipDesign>
+        <java-version>1.8.0_161</java-version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <github.global.server>github</github.global.server>
     </properties>
 
+	<distributionManagement>
+        <repository>
+            <id>nexus-snapshots</id>
+            <name>admin</name>
+            <url>http://18.216.211.157:8081/nexus/content/repositories/releases/</url>
+            <layout>default</layout>
+        </repository>
+		<snapshotRepository>
+			<id>nexus-snapshots</id>
+			<name>admin</name>
+			<url>http://18.216.211.157:8081/nexus/content/repositories/snapshots/</url>
+			<layout>default</layout>
+		</snapshotRepository>
+    </distributionManagement>
+
+    <build>
+        <plugins>
+            <!-- Maven Assembly Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.4.1</version>
+                <configuration>
+
+                    <!-- get all project dependencies -->
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+
+                    <!-- MainClass in mainfest make a executable jar -->
+                    <archive>
+                        <manifest>
+                            <mainClass>com.myorganization.app.Main</mainClass>
+                        </manifest>
+                    </archive>
+
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <!-- bind to the packaging phase -->
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+    <artifactId>myapp</artifactId>
 </project>
